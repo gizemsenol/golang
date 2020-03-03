@@ -2,9 +2,9 @@ package main
 
 import (
 	"io/ioutil"
-    "fmt"
-    "html/template"
-    "log"
+    	"fmt"
+    	"html/template"
+    	"log"
 	"net/http"
 	"encoding/xml"
 	"encoding/json"
@@ -31,7 +31,7 @@ type room struct {
 
 
 func roomsearch(w http.ResponseWriter, r *http.Request) {
-    t, _ := template.ParseFiles("./html/main.html")
+    t, _ := template.ParseFiles("./main.html")
     t.Execute(w, nil)
 }
 func RandomURL() string {
@@ -51,7 +51,7 @@ func numberOfDay(checkin, checkout time.Time) int {
 
 func searchresult(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "GET" {
-        t, _ := template.ParseFiles("./html/searchresult.html")
+        t, _ := template.ParseFiles("./searchresult.html")
         t.Execute(w, nil)
     } else {
 		r.ParseForm()
@@ -59,7 +59,7 @@ func searchresult(w http.ResponseWriter, r *http.Request) {
 		req, _:= http.NewRequest("POST", RandomURL(), nil)
 		resp, err2 := client.Do(req)
 		if err2 != nil {
-			t, _ := template.ParseFiles("./html/error.html")
+			t, _ := template.ParseFiles("./error.html")
         	t.Execute(w, nil)
 		}else{
 			defer resp.Body.Close()
